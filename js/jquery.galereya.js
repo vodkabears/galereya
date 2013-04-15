@@ -1,3 +1,10 @@
+/**
+ * Galereya v 0.9
+ * http://vodkabears.github.com/galereya
+ *
+ * Licensed under the MIT license
+ * Copyright (c) 2013, VodkaBears
+ */
 (function ($) {
     'use strict';
 
