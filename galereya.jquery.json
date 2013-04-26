@@ -19,12 +19,12 @@
     "licenses": [
         {
             "type": "MIT",
-            "url": "https://raw.github.com/VodkaBears/galereya/master/LICENSE.md?login=VodkaBears&token=952f69d497e31e3f5e6ae9ac8839c880"
+            "url": "https://raw.github.com/VodkaBears/galereya/master/LICENSE.md"
         }
     ],
     "homepage": "http://vodkabears.github.io/galereya",
     "docs": "http://vodkabears.github.io/galereya",
-	"demo": "http://vodkabears.github.io/galereya/demo.html",
+    "demo": "http://vodkabears.github.io/galereya/demo.html",
     "download": "https://github.com/VodkaBears/galereya/archive/latest.zip",
     "dependencies": {
         "jquery": ">=1.9.0"
