@@ -274,6 +274,7 @@
             font-size: 10pt;
 
             position: absolute;
+            left: 0;
             bottom: 0;
 
             -webkit-box-sizing: border-box;

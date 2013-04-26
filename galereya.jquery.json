@@ -11,7 +11,7 @@
         "slider",
         "customizable"
     ],
-    "version": "1",
+    "version": "0.9.9",
     "author": {
         "name": "VodkaBears",
         "url": "https://github.com/VodkaBears"
@@ -19,11 +19,12 @@
     "licenses": [
         {
             "type": "MIT",
-            "url": "http://opensource.org/licenses/mit-license.php"
+            "url": "https://raw.github.com/VodkaBears/galereya/master/LICENSE.md?login=VodkaBears&token=952f69d497e31e3f5e6ae9ac8839c880"
         }
     ],
     "homepage": "http://vodkabears.github.io/galereya",
     "docs": "http://vodkabears.github.io/galereya",
+	"demo": "http://vodkabears.github.io/galereya/demo.html",
     "download": "https://github.com/VodkaBears/galereya",
     "dependencies": {
         "jquery": ">=1.9.0"

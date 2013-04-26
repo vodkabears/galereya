@@ -15,6 +15,7 @@
          * JQuery variables
          */
         var $cells,
+            $top,
             $grid,
             $imgs = $([]),
             $categoriesList = $([]),
@@ -30,7 +31,12 @@
             visibleCells = [],
             slides = [],
             htmlOverflow, bodyOverflow,
+            gridW,
+            height = 0,
+            rowCount = 0,
+            cellW = 300,
             scrollTop,
+            topHeight,
             loadTimeout,
             currentSlideIndex,
             isSliderOpened = false,
@@ -41,11 +47,10 @@
          * @type {Object}
          */
         var defaults = {
-            rowCount: 0, //auto calculated
-            cellW: 300, //auto calculated from css
             spacing: 0,
             wave: true,
             waveTimeout: 300,
+            modifier: '',
             slideShowSpeed: 10000,
             cellFadeInSpeed: 200,
             noCategoryName: 'all',
@@ -132,7 +137,7 @@
          * Local constructor
          */
         var constructor = function () {
-            self.addClass('galereya');
+            self.addClass('galereya').addClass(self.options.modifier);
             loadData(function () {
                 buildDOM();
                 resize();
@@ -179,14 +184,15 @@
          * Calculate some starting params
          */
         var calcParams = function () {
-            self.options.cellW = $cells.width();
+            cellW = $cells.width();
+            topHeight = $top.height();
 
-            self.options.rowCount = Math.floor(self.width() / (self.options.cellW + self.options.spacing));
-            if (self.options.rowCount < 1) {
-                self.options.rowCount = 1;
+            rowCount = Math.floor(self.width() / (cellW + self.options.spacing));
+            if (rowCount < 1) {
+                rowCount = 1;
             }
 
-            self.options.gridW = self.options.rowCount * self.options.cellW;
+            gridW = rowCount * cellW + (rowCount - 1) * self.options.spacing;
         };
 
         /**
@@ -241,7 +247,8 @@
         var buildDOM = function () {
             if (categories.length > 0) {
                 $categoriesList = $('<ul class="galereya-cats" />');
-                self.prepend($('<div class="galereya-top" />').html($categoriesList));
+                $top = $('<div class="galereya-top" />');
+                self.prepend($top.html($categoriesList));
                 $categoriesList.append('<li class="galereya-cats-item"><span>' + self.options.noCategoryName + '</span></li>');
                 for (var i = 0; i < categories.length; i++) {
                     $categoriesList.append('<li class="galereya-cats-item"><span>' + categories[i] + '</span></li>');
@@ -274,6 +281,7 @@
             $sliderClose = $('<div class="galereya-slider-close" />');
             $sliderPlay = $('<div class="galereya-slider-play" />');
             $slider
+                .addClass(self.options.modifier)
                 .append($sliderContainer)
                 .append($sliderNext)
                 .append($sliderPrev)
@@ -347,15 +355,23 @@
          * @param number
          */
         var placeCell = function (cell, number) {
-            var left, top, topCell, row;
+            var left, top, topCell, row, bottom, h;
 
-            row = number % self.options.rowCount;
-            left = row * self.options.cellW + self.options.spacing * row;
-            if (number >= self.options.rowCount) {
-                topCell = visibleCells[number - self.options.rowCount];
+            row = number % rowCount;
+            left = row * cellW + self.options.spacing * row;
+            if (number >= rowCount) {
+                topCell = visibleCells[number - rowCount];
                 top = topCell.offsetTop + topCell.offsetHeight + self.options.spacing;
             } else {
                 top = 0;
+            }
+
+            bottom = top + cell.offsetHeight;
+            h = bottom + topHeight;
+            if(h > height) {
+                height = h;
+                $grid.height(bottom);
+                self.height(height);
             }
 
             cell.style.top = top + 'px';
@@ -396,6 +412,7 @@
         var changeCategory = function (category) {
             $categoriesList.empty().prepend('<li class="galereya-cats-item"><span>' + category + '</span></li>');
 
+            height = 0;
             hideCells();
             if (category === self.options.noCategoryName) {
                 loadImages(0);
@@ -422,8 +439,9 @@
                 $currentImg = $currentSlide.find('.galereya-slide-img');
             }
             $currentImg.css('margin-top', ($(window).height() - $currentImg.height()) / 2);
-            $grid.width(self.options.gridW);
+            $grid.width(gridW);
 
+            height = 0;
             for (var i = 0, len = visibleCells.length; i < len; i++) {
                 placeCell(visibleCells[i], i);
             }

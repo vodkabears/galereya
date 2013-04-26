@@ -1,11 +1,11 @@
 Galereya
 =================
 Responsive, easily customizable jquery gallery with a masonry layout.
-Almost all animation and effects are based on CSS properties.
+Almost all animation and effects are based on CSS features.
 
-**Look here**: [Click](http://vodkabears.github.com/galereya)
+[View Demo](http://vodkabears.github.io/galereya)
 
-Browser Compatibility
+Browser compatibility
 ---------------------
 Tested on Chrome, Safari, Firefox, Opera(turned off some CSS animations), IE7+(Graceful degradation),
 Android browser, Chrome mobile, Firefox mobile, Safari on iOS.
@@ -15,7 +15,14 @@ Rapid start
 -----
 ```html
 <head>
+	<meta charset="utf-8" />
+	<title>Galereya</title>
     <link href="css/jquery.galereya.css" rel="stylesheet"/>
+    <!--[if lt IE 9]>
+    <link rel="stylesheet" href="css/jquery.galereya.ie.css">
+    <![endif]-->
+
+    <script src="js/jquery.min.js"></script>
     <script src="js/jquery.galereya.js"></script>
     <script>
         $(function() {
@@ -63,11 +70,11 @@ OR
 </body>
 ```
 
-Parameters
+Options
 ----------
-**Transition durations, cells width and all other parameters, except below ones, are read from your CSS!** This allows you to do a lot different customizations for Galereya without any pain.
+**Transition durations, cells width and all other parameters, except below ones, are read from your CSS!** This allows you to do a lot of different customizations for Galereya without any pain.
 
-**Parameters and their default values:**
+**Options and their default values:**
 ```js
     $('#galleryherepls').galereya({
             //spacing between cells of the masonry grid
@@ -117,3 +124,7 @@ gallery.openSlider(5);
 | stopSlideShow()               | Stop slide show.                                                              |
 | nextSlide()                   | Go to the next slide, if slider is opened.                                    |
 | prevSlide()                   | Go to the previous slide, if slider is opened.                                |
+
+Customization
+--------------
+[Simple example](http://vodkabears.github.io/galereya#customization)
