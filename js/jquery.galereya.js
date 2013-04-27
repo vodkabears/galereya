@@ -1,5 +1,5 @@
 /**
- * Galereya v 0.9
+ * Galereya v 0.9.9
  * http://vodkabears.github.com/galereya
  *
  * Licensed under the MIT license
@@ -32,11 +32,9 @@
             slides = [],
             htmlOverflow, bodyOverflow,
             gridW,
-            height = 0,
             rowCount = 0,
             cellW = 300,
             scrollTop,
-            topHeight,
             loadTimeout,
             currentSlideIndex,
             isSliderOpened = false,
@@ -185,7 +183,6 @@
          */
         var calcParams = function () {
             cellW = $cells.width();
-            topHeight = $top.height();
 
             rowCount = Math.floor(self.width() / (cellW + self.options.spacing));
             if (rowCount < 1) {
@@ -366,14 +363,6 @@
                 top = 0;
             }
 
-            bottom = top + cell.offsetHeight;
-            h = bottom + topHeight;
-            if(h > height) {
-                height = h;
-                $grid.height(bottom);
-                self.height(height);
-            }
-
             cell.style.top = top + 'px';
             cell.style.left = left + 'px';
         };
@@ -412,7 +401,6 @@
         var changeCategory = function (category) {
             $categoriesList.empty().prepend('<li class="galereya-cats-item"><span>' + category + '</span></li>');
 
-            height = 0;
             hideCells();
             if (category === self.options.noCategoryName) {
                 loadImages(0);
@@ -441,7 +429,6 @@
             $currentImg.css('margin-top', ($(window).height() - $currentImg.height()) / 2);
             $grid.width(gridW);
 
-            height = 0;
             for (var i = 0, len = visibleCells.length; i < len; i++) {
                 placeCell(visibleCells[i], i);
             }
