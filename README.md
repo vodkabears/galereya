@@ -7,7 +7,7 @@ Almost all animation and effects are based on CSS features.
 
 Browser compatibility
 ---------------------
-Tested on Chrome, Safari, Firefox, Opera(turned off some CSS animations), IE7+(Graceful degradation),
+Works on Chrome, Safari, Firefox, Opera(turned off some CSS animations), IE7+(Graceful degradation),
 Android browser, Chrome mobile, Firefox mobile, Safari on iOS.
 Galereya effects and browser compatibility depends on your custom CSS styles a lot!
 
@@ -51,7 +51,13 @@ Rapid start
 OR
 ```html
 <head>
-    <link href="jquery.galereya.css" rel="stylesheet"/>
+	<meta charset="utf-8" />
+	<title>Galereya</title>
+    <link href="css/jquery.galereya.css" rel="stylesheet"/>
+    <!--[if lt IE 9]>
+    <link rel="stylesheet" href="css/jquery.galereya.ie.css">
+    <![endif]-->
+
     <script src="jquery.galereya.js"></script>
     <script>
         $(function() {
@@ -84,7 +90,10 @@ Options
             wave: true,
             
             //waving visual effect timeout duration
-            waveTimeout: 300, 
+            waveTimeout: 300,
+
+            // special CSS modifier for the gallery
+            modifier: '',
             
             //speed of the slide show
             slideShowSpeed: 10000,
