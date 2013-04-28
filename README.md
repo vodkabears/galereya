@@ -8,7 +8,7 @@ Almost all animation and effects are based on CSS features.
 Browser compatibility
 ---------------------
 Works on Chrome, Safari, Firefox, Opera(turned off some CSS animations), IE7+(Graceful degradation),
-Android browser, Chrome mobile, Firefox mobile, Safari on iOS.
+Android browser, Chrome mobile, Firefox mobile, Safari on iOS and etc.
 Galereya effects and browser compatibility depends on your custom CSS styles a lot!
 
 Rapid start
