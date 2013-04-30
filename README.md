@@ -3,7 +3,7 @@ Galereya
 Responsive, easily customizable jquery gallery with a masonry layout.
 Almost all animation and effects are based on CSS features.
 
-[View Demo](http://vodkabears.github.io/galereya)
+[View Demo](http://vodkabears.github.io/galereya/)
 
 Browser compatibility
 ---------------------
@@ -23,7 +23,7 @@ Rapid start
     <![endif]-->
 
     <script src="js/jquery.min.js"></script>
-    <script src="js/jquery.galereya.js"></script>
+    <script src="js/jquery.galereya.min.js"></script>
     <script>
         $(function() {
             $('#galleryherepls').galereya();
@@ -58,7 +58,7 @@ OR
     <link rel="stylesheet" href="css/jquery.galereya.ie.css">
     <![endif]-->
 
-    <script src="jquery.galereya.js"></script>
+    <script src="js/jquery.galereya.min.js"></script>
     <script>
         $(function() {
             $('#galleryherepls').galereya({
@@ -136,4 +136,4 @@ gallery.openSlider(5);
 
 Customization
 --------------
-[Simple example](http://vodkabears.github.io/galereya#customization)
+[Simple example](http://vodkabears.github.io/galereya/#customization)

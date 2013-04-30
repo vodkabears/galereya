@@ -22,8 +22,8 @@
             "url": "https://raw.github.com/VodkaBears/galereya/master/LICENSE.md"
         }
     ],
-    "homepage": "http://vodkabears.github.io/galereya",
-    "docs": "http://vodkabears.github.io/galereya",
+    "homepage": "http://vodkabears.github.io/galereya/",
+    "docs": "http://vodkabears.github.io/galereya/",
     "demo": "http://vodkabears.github.io/galereya/demo.html",
     "download": "https://github.com/VodkaBears/galereya/archive/latest.zip",
     "dependencies": {
