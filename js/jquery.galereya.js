@@ -1,5 +1,5 @@
 /**
- * Galereya v 0.9.9
+ * Galereya v 0.9.91
  * http://vodkabears.github.com/galereya
  *
  * Licensed under the MIT license
@@ -217,21 +217,23 @@
             });
 
             self.options.load(function (items) {
-                for (var i = 0, len = items.length, item, $img; i < len; i++) {
-                    item = items[i];
-                    item.description = item.description || '';
-                    item.title = item.title || '';
-                    if (item.category) {
-                        item.category = item.category.toLowerCase();
-                        if ($.inArray(item.category, categories) === -1) {
-                            categories.push(item.category);
+                if (items && items.length) {
+                    for (var i = 0, len = items.length, item, $img; i < len; i++) {
+                        item = items[i];
+                        item.description = item.description || '';
+                        item.title = item.title || '';
+                        if (item.category) {
+                            item.category = item.category.toLowerCase();
+                            if ($.inArray(item.category, categories) === -1) {
+                                categories.push(item.category);
+                            }
                         }
-                    }
 
-                    $img = $(document.createElement('img')).attr('src', item.lowsrc);
-                    self.append($img);
-                    $imgs = $imgs.add($img);
-                    data.push(item);
+                        $img = $(document.createElement('img')).attr('src', item.lowsrc);
+                        self.append($img);
+                        $imgs = $imgs.add($img);
+                        data.push(item);
+                    }
                 }
 
                 next();

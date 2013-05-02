@@ -3,7 +3,7 @@ Galereya
 Responsive, easily customizable jquery gallery with a masonry layout.
 Almost all animation and effects are based on CSS features.
 
-[View Demo](http://vodkabears.github.io/galereya/)
+[View Demo](http://vodkabears.github.io/galereya/demo.html)
 
 Browser compatibility
 ---------------------
