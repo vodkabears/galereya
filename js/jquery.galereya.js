@@ -1,5 +1,5 @@
 /**
- * Galereya v 0.9.91
+ * Galereya v0.9.92
  * http://vodkabears.github.com/galereya
  *
  * Licensed under the MIT license
@@ -55,7 +55,8 @@
             disableSliderOnClick: false,
             load: function (next) {
                 next();
-            }
+            },
+            onCellClick: function (e) {}
         };
 
         /**
@@ -85,15 +86,17 @@
 
                 $categoriesList.toggleClass('open');
             },
-            cellClick: function () {
+            cellClick: function (e) {
                 if (!self.options.disableSliderOnClick) {
                     openSlider(parseInt(this.getAttribute('data-visibleIndex'), 10));
                 }
+
+                self.options.onCellClick(e);
             },
-            sliderNextClick: function () {
+            sliderNextClick: function (e) {
                 changeSlide('next');
             },
-            sliderPrevClick: function () {
+            sliderPrevClick: function (e) {
                 changeSlide('prev');
             },
             sliderCloseClick: function () {
@@ -453,14 +456,14 @@
             currentSlideIndex = visibleIndex;
 
             var td = getTransitionDuration($slider),
-                next = function() {
+                next = function () {
                     htmlOverflow = $('html').css('overflow');
                     bodyOverflow = $('body').css('overflow');
                     scrollTop = $(window).scrollTop();
                     $('html, body').css('overflow', 'hidden');
                 };
 
-            $slider.show(0, function() {
+            $slider.show(0, function () {
                 $slider.addClass('opened');
                 if (checkTransitionsSupport()) {
                     setTimeout(next, td + 50);
