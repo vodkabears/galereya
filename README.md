@@ -112,7 +112,10 @@ Options
                 //Data structure example
                 var data = [{"lowsrc":"upload\/thumbnails\/5165b70278e0e2.80829014.jpg","fullsrc":"upload\/5165b70278e0e2.80829014.jpg","description":"Mehmet Dere","category":"drawing"}]
                 next(data);
-            }
+            },
+
+            //Cell click handler. Works even when the 'disableSliderOnClick' property is true.
+            onCellClick: function(e) {}
     });
 ```
 
