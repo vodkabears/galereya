@@ -129,13 +129,14 @@ gallery.openSlider(5);
 
 | Method                        | Description                                                                   |
 | -------------                 |:-------------:                                                                |
-| openSlider(visibleIndex)      | Open slider. `visibleIndex` parameter is an index of a set of visible cells.  |
-| closeSlider()                 | Yes, close it.                                                                |
-| changeCategory(categoryName)  | Show a special category of images. `categoryName` is a name of a category.    |
-| startSlideShow()              | Start slide show.                                                             |
-| stopSlideShow()               | Stop slide show.                                                              |
-| nextSlide()                   | Go to the next slide, if slider is opened.                                    |
-| prevSlide()                   | Go to the previous slide, if slider is opened.                                |
+| openSlider(visibleIndex)      | Open the slider. `visibleIndex` parameter is an index of a set of visible cells.|
+| closeSlider()                 | Yes, close it.|
+| changeCategory(categoryName)  | Show a special category of images. `categoryName` is a name of a category.|
+| startSlideShow()              | Start a slide show.|
+| stopSlideShow()               | Stop a slide show.|
+| nextSlide()                   | Go to the next slide, if the slider is opened.|
+| prevSlide()                   | Go to the previous slide, if the slider is opened.|
+| loadMore(data)                | Load additional images to the galereya. `data` is an object like in the load function.|
 
 Customization
 --------------
