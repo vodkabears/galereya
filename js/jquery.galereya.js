@@ -736,6 +736,10 @@
         this.prevSlide = function () {
             $sliderPrev.click();
         };
+        /**
+         * Load additional images to the galereya.
+         * @param items - is an object like in the load function.
+         */
         this.loadMore = function (items) {
             if (items && items.length) {
                 var i = 0,
