@@ -1,5 +1,5 @@
 /**
- * Galereya v0.9.92
+ * Galereya v0.9.93
  * http://vodkabears.github.com/galereya
  *
  * Licensed under the MIT license
@@ -14,10 +14,10 @@
         /**
          * JQuery variables
          */
-        var $cells,
-            $top,
+        var $top,
             $grid,
-            $imgs = $([]),
+            $imgs,
+            $cells = $([]),
             $categoriesList = $([]),
             $slider, $sliderContainer,
             $sliderNext, $sliderPrev, $sliderDesc, $sliderClose, $sliderPlay,
@@ -37,6 +37,7 @@
             scrollTop,
             loadTimeout,
             currentSlideIndex,
+            currentCategory,
             isSliderOpened = false,
             slideShowInterval;
 
@@ -196,6 +197,66 @@
         };
 
         /**
+         * Create a simple grid image DOM element and add it to the $imgs jquery object
+         * @param src
+         * @returns {jQuery} - image element
+         */
+        var createImage = function (src) {
+            var $img = $(document.createElement('img')).attr('src', src);
+            self.append($img);
+            $imgs = $imgs.add($img);
+
+            return $img;
+        };
+
+        /**
+         * Create a galereya cell element and add it to the $cells jquery object
+         * @param $img - an image element
+         * @param item - an image info with a title and description
+         * @returns {jQuery} - cell element
+         */
+        var createCell = function ($img, info) {
+            var $cell = $img.addClass('galereya-cell-img')
+                .wrap('<div class="galereya-cell" data-index="' + $cells.length + '"></div>')
+                .parent()
+                .append('<div class="galereya-cell-desc">\
+                                <div class="galereya-cell-desc-title">' + info.title + '</div>\
+                                <div class="galereya-cell-desc-text">' + info.description + '</div>\
+                            </div>')
+                .append('<div class="galereya-cell-overlay" />');
+            $cell.click(Handlers.cellClick);
+            $cells = $cells.add($cell);
+            $grid.append($cell);
+
+            return $cell;
+        };
+
+        /**
+         * Add information about an image to the data array
+         * @param info
+         * @returns {} - Modified item
+         */
+        var addInfo = function (info) {
+            var item = {
+                "lowsrc": info.lowsrc || '',
+                "fullsrc": info.fullsrc || '',
+                "title": info.title || '',
+                "description": info.description || '',
+                "category": info.category || ''
+            };
+
+            if (item.category) {
+                item.category = item.category.toLowerCase();
+                if ($.inArray(item.category, categories) === -1) {
+                    categories.push(item.category);
+                }
+            }
+
+            data.push(item);
+            return item;
+        };
+
+        /**
          * Loading data
          */
         var loadData = function (next) {
@@ -209,33 +270,14 @@
                     "category": img.getAttribute('data-category') || ''
                 };
 
-                if (item.category) {
-                    item.category = item.category.toLowerCase();
-                    if ($.inArray(item.category, categories) === -1) {
-                        categories.push(item.category);
-                    }
-                }
-
-                data.push(item);
+                addInfo(item);
             });
 
             self.options.load(function (items) {
                 if (items && items.length) {
                     for (var i = 0, len = items.length, item, $img; i < len; i++) {
-                        item = items[i];
-                        item.description = item.description || '';
-                        item.title = item.title || '';
-                        if (item.category) {
-                            item.category = item.category.toLowerCase();
-                            if ($.inArray(item.category, categories) === -1) {
-                                categories.push(item.category);
-                            }
-                        }
-
-                        $img = $(document.createElement('img')).attr('src', item.lowsrc);
-                        self.append($img);
-                        $imgs = $imgs.add($img);
-                        data.push(item);
+                        item = addInfo(items[i]);
+                        createImage(item.lowsrc);
                     }
                 }
 
@@ -404,6 +446,7 @@
          * @param category
          */
         var changeCategory = function (category) {
+            currentCategory = category;
             $categoriesList.empty().prepend('<li class="galereya-cats-item"><span>' + category + '</span></li>');
 
             hideCells();
@@ -692,6 +735,26 @@
         };
         this.prevSlide = function () {
             $sliderPrev.click();
+        };
+        /**
+         * Load additional images to the galereya.
+         * @param items - is an object like in the load function.
+         */
+        this.loadMore = function (items) {
+            if (items && items.length) {
+                var i = 0,
+                    startIndex = $cells.length,
+                    gridIndex = startIndex,
+                    len = items.length,
+                    item, $img;
+                for (; i < len; i++, gridIndex++) {
+                    item = addInfo(items[i]);
+                    $img = createImage(item.lowsrc);
+                    createCell($img, item);
+                }
+
+                loadImages(startIndex, currentCategory);
+            }
         };
 
         constructor();
