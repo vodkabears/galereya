@@ -6,18 +6,18 @@
     width: 300px;
 }
 
-    .galereya-cell-desc {
-        display: block;
+.galereya-cell-desc {
+    display: block;
 
-        filter: alpha(opacity=0);
-        background: #000;
-    }
+    filter: alpha(opacity=0);
+    background: #000;
+}
 
 .galereya-cell:hover {}
 
-    .galereya-cell:hover .galereya-cell-desc {
-        filter: alpha(opacity=90);
-    }
+.galereya-cell:hover .galereya-cell-desc {
+    filter: alpha(opacity=90);
+}
 
 .galereya-slider-nav { filter: alpha(opacity=5); }
 .galereya-slider-nav:hover { filter: alpha(opacity=15); }
