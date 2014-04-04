@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="Demo">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+
+        <title>Galereya. Demo.</title>
+
+        <link href='http://fonts.googleapis.com/css?family=Scada:400,400italic,700,700italic&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="../src/css/jquery.galereya.css">
+        <!--[if lt IE 9]>
+        <link rel="stylesheet" href="../src/css/jquery.galereya.ie.css">
+        <![endif]-->
+        <style>
+            body {
+                font-family: 'Scada', sans-serif;
+                font-size: 0.625em;
+                background: #f6f6f6;
+                color: #212121;
+            }
+
+            .galereya-top {
+                position: fixed;
+
+                background: #f6f6f6;
+                background: rgba(246, 246, 246, 0.7);
+            }
+        </style>
+    </head>
+    <body>
+        <div id="gallery"></div>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="../src/js/jquery-1.9.1.min.js"><\/script>')</script>
+        <script src="../src/js/jquery.galereya.js"></script>
+        <script>
+            $(function() {
+                $('#gallery').galereya({
+                    load: function(next) {
+                        $.getJSON('images.json', function(data) {
+                            next(data);
+                        });
+                    }
+                });
+            });
+        </script>
+        <!-- Google Analytics -->
+        <script>
+            var _gaq=[['_setAccount','UA-40540506-1'],['_trackPageview']];
+            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+                g.src='//www.google-analytics.com/ga.js';
+                s.parentNode.insertBefore(g,s)}(document,'script'));
+        </script>
+    </body>
+</html>
