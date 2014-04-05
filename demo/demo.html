@@ -15,7 +15,6 @@
         <style>
             body {
                 font-family: 'Scada', sans-serif;
-                font-size: 0.625em;
                 background: #f6f6f6;
                 color: #212121;
             }
@@ -26,13 +25,20 @@
                 background: #f6f6f6;
                 background: rgba(246, 246, 246, 0.7);
             }
+
+            footer {
+                text-align: center;
+            }
         </style>
     </head>
     <body>
         <div id="gallery"></div>
+        <footer>
+            Galereya
+        </footer>
 
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="../src/js/jquery-1.9.1.min.js"><\/script>')</script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/jquery-1.9.1.min.js"><\/script>')</script>
         <script src="../src/js/jquery.galereya.js"></script>
         <script>
             $(function() {
@@ -44,13 +50,6 @@
                     }
                 });
             });
-        </script>
-        <!-- Google Analytics -->
-        <script>
-            var _gaq=[['_setAccount','UA-40540506-1'],['_trackPageview']];
-            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-                g.src='//www.google-analytics.com/ga.js';
-                s.parentNode.insertBefore(g,s)}(document,'script'));
         </script>
     </body>
 </html>

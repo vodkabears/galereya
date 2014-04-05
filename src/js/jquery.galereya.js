@@ -33,7 +33,7 @@
             htmlOverflow, bodyOverflow,
             gridW,
             gridH,
-            rowCount = 0,
+            colCount = 0,
             cellW = 300,
             cellH = 300,
             scrollTop,
@@ -191,13 +191,13 @@
             cellW = $cells.width();
             cellH = $cells.height();
 
-            rowCount = Math.floor(self.width() / (cellW + self.options.spacing));
-            if (rowCount < 1) {
-                rowCount = 1;
+            colCount = Math.floor((self.width() - 10) / (cellW + self.options.spacing));
+            if (colCount < 1) {
+                colCount = 1;
             }
 
-            gridW = rowCount * cellW + (rowCount - 1) * self.options.spacing;
-            gridH = Math.ceil($imgs.length / rowCount) * cellH;
+            gridW = colCount * cellW + (colCount - 1) * self.options.spacing;
+            gridH = Math.ceil($imgs.length / colCount) * cellH;
         };
 
         /**
@@ -403,15 +403,22 @@
          * @param number
          */
         var placeCell = function (cell, number) {
-            var left, top, topCell, row;
+            var left, top, topCell, col;
 
-            row = number % rowCount;
-            left = row * cellW + self.options.spacing * row;
-            if (number >= rowCount) {
-                topCell = visibleCells[number - rowCount];
+            col = number % colCount;
+            left = col * cellW + self.options.spacing * col;
+            if (number >= colCount) {
+                topCell = visibleCells[number - colCount];
                 top = topCell.offsetTop + topCell.offsetHeight + self.options.spacing;
             } else {
                 top = 0;
+            }
+
+            // Change height cell by cell
+            var height = top + cell.offsetHeight;
+            if (height > gridH) {
+                gridH = height;
+                $grid.height(gridH + $grid[0].offsetTop);
             }
 
             cell.style.top = top + 'px';
@@ -423,6 +430,7 @@
          */
         var hideCells = function () {
             visibleCells = [];
+            gridH = 0;
             $cells.stop(true, true).fadeOut(200).removeClass('visible');
         };
 
@@ -480,8 +488,7 @@
             }
             $currentImg.css('margin-top', ($(window).height() - $currentImg.height()) / 2);
             $grid.width(gridW);
-            $grid.height(gridH);
-
+            gridH = 0;
             for (var i = 0, len = visibleCells.length; i < len; i++) {
                 placeCell(visibleCells[i], i);
             }
