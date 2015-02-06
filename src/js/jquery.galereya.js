@@ -303,15 +303,16 @@
                 }
             }
 
-            var $img, title, desc;
+            var $img, title, desc, hideDesc = '';;
             $imgs.wrapAll('<div class="galereya-grid" />').each(function (i, img) {
                 $img = $(img);
                 title = data[i].title;
                 desc = data[i].description;
+                hideDesc = title || desc ? '' : ' style="display: none"';
                 $img.addClass('galereya-cell-img')
                     .wrap('<div class="galereya-cell" data-index="' + i + '"></div>')
                     .parent()
-                    .append('<div class="galereya-cell-desc">\
+                    .append('<div class="galereya-cell-desc"'+hideDesc+'>\
                                 <div class="galereya-cell-desc-title">' + title + '</div>\
                                 <div class="galereya-cell-desc-text">' + desc + '</div>\
                             </div>')
