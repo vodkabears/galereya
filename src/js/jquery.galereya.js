@@ -656,6 +656,7 @@
             $currentSlide = $slide;
             index = visibleCells[currentSlideIndex].getAttribute('data-index');
             $sliderDesc.empty().html('<div class="galereya-slider-desc-title">' + data[index].title + ' </div>' + data[index].description);
+            $sliderDesc.toggle(Boolean(data[index].title || data[index].description));
             $currentImg = $slide.find('.galereya-slide-img');
             $currentImg.css('margin-top', ($(window).height() - $currentImg.height()) / 2);
 
