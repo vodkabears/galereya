@@ -303,7 +303,7 @@
                 }
             }
 
-            var $img, title, desc, hideDesc = '';;
+            var $img, title, desc, hideDesc = '';
             $imgs.wrapAll('<div class="galereya-grid" />').each(function (i, img) {
                 $img = $(img);
                 title = data[i].title;
