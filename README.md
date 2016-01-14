@@ -1,3 +1,7 @@
+DEPRECATED
+=================
+This plugin is depricated, use CSS flexbox instead.
+
 Galereya
 =================
 Responsive, easily customizable jquery gallery with a masonry layout.
