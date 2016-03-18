@@ -1,6 +1,6 @@
 DEPRECATED
 =================
-This plugin is depricated, use CSS flexbox instead.
+This plugin is depricated, use CSS flexbox, CSS grid layouts (with polyfills) or other libraries instead.
 
 Galereya
 =================
