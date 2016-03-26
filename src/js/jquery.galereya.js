@@ -241,18 +241,23 @@
          * @returns {} - Modified item
          */
         var addInfo = function (info) {
+            if (info.category && (typeof info.category == 'string')) {
+                info.category = [info.category];
+            }
             var item = {
                 "lowsrc": info.lowsrc || '',
                 "fullsrc": info.fullsrc || '',
                 "title": info.title || '',
                 "description": info.description || '',
-                "category": info.category || ''
+                "category": info.category || ['']
             };
 
-            if (item.category) {
-                item.category = item.category.toLowerCase();
-                if ($.inArray(item.category, categories) === -1) {
-                    categories.push(item.category);
+            if (item.category.length) {
+                for (var i = 0; i<item.category.length; i++) {
+                    item.category[i] = item.category[i].toLowerCase();
+                    if ($.inArray(item.category[i], categories) === -1) {
+                        categories.push(item.category[i]);
+                    }
                 }
             }
 
@@ -271,7 +276,7 @@
                     "fullsrc": img.getAttribute('data-fullsrc') || '',
                     "title": img.getAttribute('title') || img.getAttribute('alt') || '',
                     "description": img.getAttribute('data-desc') || '',
-                    "category": img.getAttribute('data-category') || ''
+                    "category": [img.getAttribute('data-category')] || ['']
                 };
 
                 addInfo(item);
@@ -357,7 +362,7 @@
 
             clearTimeout(loadTimeout);
 
-            if (category && data[index].category !== category) {
+            if (category && (data[index].category.indexOf(category) < 0)) {
                 setTimeout(function () {
                     loadImages(++index, category);
                 }, 0);
